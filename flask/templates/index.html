@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="container my-4">
+    <h2>Add a Todo</h2>
+    <form action="/" method="POST">
+        <div class="input-group flex-nowrap my-2">
+            <span class="input-group-text" id="addon-wrapping">1</span>
+            <input type="text" name="title" class="form-control" placeholder="add a todo" aria-label="add a todo"
+                aria-describedby="addon-wrapping">
+        </div>
+        <div class="input-group flex-nowrap my-2">
+            <input type="text" name="desc" class="form-control" placeholder="add todo description"
+                aria-label="add a todo" aria-describedby="addon-wrapping">
+        </div>
+        <button type="submit" class="btn btn-info my-2">Add</button>
+    </form>
+</div>
+<div class="container my-4">
+    <h2>Your Todos</h2>
+    {% if alltodo|length==0 %}
+    <p>No Todos here</p>
+    {%else%}
+    {% for todo in alltodo %}
+    <div class="input-group mb-3 d-flex">
+        <div class="input-group-text">
+            <input class="form-check-input mt-0" type="checkbox" value=""
+                aria-label="Checkbox for following text input">
+        </div>
+        <ul class="list-group" style="width:95%">
+            <li class="list-group-item d-flex">{{loop.index}}. {{todo.title}}
+                <span style="display: inline;  margin-left: 100px; width: 250px;">{{todo.desc}}</span>
+                <span style="display: inline;  margin-left: 100px; width: 300px">{{todo.date_created}}
+                    <a href="/update/{{todo.sno}}"><button type="submit" class="btn btn-info mx-2">update</button></a>
+                    <a href="/delete/{{todo.sno}}">
+                        <div class="input-group-text" style="float: right;">X</div>
+                    </a>
+                </span>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock main %}

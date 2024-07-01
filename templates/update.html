@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block update %}
+<form action="/update/{{todo.sno}}" method="POST">
+    <div class="input-group flex-nowrap my-2">
+        <span class="input-group-text" id="addon-wrapping">1</span>
+        <input type="text" name="title" value="{{todo.title}}" class="form-control" placeholder="add a todo"
+            aria-label="add a todo" aria-describedby="addon-wrapping">
+    </div>
+    <div class="input-group flex-nowrap my-2">
+        <input type="text" name="desc" value="{{todo.desc}}" class="form-control" placeholder="add todo description"
+            aria-label="add a todo" aria-describedby="addon-wrapping">
+    </div>
+    <button type="submit" class="btn btn-info my-2">update</button>
+</form>
+{% endblock update %}
